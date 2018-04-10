@@ -5,41 +5,45 @@
   <meta charset="UTF-8">
   
     <title>build-imagemagick-libwebp-with-jpeg-turbo-from-source | Kwanhur&#39;s Blog (黄老湿)</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="kwanhur">
     
-    <meta name="description" content="对于喜欢折腾的人，安装所需系统库都是手工源码编译出来使用，这或许有种可控的感觉。
-相比直接使用软件库已编译好的，源码编译可更加自由选择或指定版本。
-近期在CentOS-7.2系统上，升级webp图片依赖系统库时，整理了个一键编译ImageMagick脚本，如下：
-123456789101112131">
+
     
+    <meta name="description" content="对于喜欢折腾的人，安装所需系统库都是手工源码编译出来使用，这或许有种可控的感觉。 相比直接使用软件库已编译好的，源码编译可更加自由选择或指定版本。 近期在CentOS-7.2系统上，升级webp图片依赖系统库时，整理了个一键编译ImageMagick脚本，如下： $ head  -n 1 /etc/redhat-release CentOS Linux release 7.2.1511 (Core">
+<meta property="og:type" content="article">
+<meta property="og:title" content="build-imagemagick-libwebp-with-jpeg-turbo-from-source">
+<meta property="og:url" content="https://kwanhur.com/2018/04/09/build-imagemagick-libwebp-with-jpeg-turbo-from-source/index.html">
+<meta property="og:site_name" content="Kwanhur&#39;s Blog (黄老湿)">
+<meta property="og:description" content="对于喜欢折腾的人，安装所需系统库都是手工源码编译出来使用，这或许有种可控的感觉。 相比直接使用软件库已编译好的，源码编译可更加自由选择或指定版本。 近期在CentOS-7.2系统上，升级webp图片依赖系统库时，整理了个一键编译ImageMagick脚本，如下： $ head  -n 1 /etc/redhat-release CentOS Linux release 7.2.1511 (Core">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-04-09T06:54:28.932Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="build-imagemagick-libwebp-with-jpeg-turbo-from-source">
+<meta name="twitter:description" content="对于喜欢折腾的人，安装所需系统库都是手工源码编译出来使用，这或许有种可控的感觉。 相比直接使用软件库已编译好的，源码编译可更加自由选择或指定版本。 近期在CentOS-7.2系统上，升级webp图片依赖系统库时，整理了个一键编译ImageMagick脚本，如下： $ head  -n 1 /etc/redhat-release CentOS Linux release 7.2.1511 (Core">
+<meta name="twitter:creator" content="@KwanhurHuang">
+
     
-    
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:site" content="KwanhurHuang" />
-    <meta name="twitter:title" content="build-imagemagick-libwebp-with-jpeg-turbo-from-source | Kwanhur&#39;s Blog (黄老湿)" />
-      
-    
-    
-    <link rel="alternate" href="https://kwanhur.com/atom.xml" title="Kwanhur&#39;s Blog (黄老湿)" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="Kwanhur&#39;s Blog (黄老湿)" type="application/atom+xml">
     
     
     <link rel="icon" href="/img/favicon.ico">
     
     
-    <link rel="apple-touch-icon" href="/img/pacman.jpg">
-    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
     
     <link rel="stylesheet" href="/css/style.css">
 </head>
 
   <body>
     <header>
-      <div>
+      
+<div>
 		
 			<div id="imglogo">
-				<a href="/"><img src="/img/logo.svg" alt="Kwanhur&#39;s Blog (黄老湿)" title="Kwanhur&#39;s Blog (黄老湿)"/></a>
+				<a href="/"><img src="/img/logo.png" alt="Kwanhur&#39;s Blog (黄老湿)" title="Kwanhur&#39;s Blog (黄老湿)"/></a>
 			</div>
 			
 			<div id="textlogo">
@@ -50,16 +54,19 @@
 			</a></div>
 			<nav class="animated">
 				<ul>
-					
+					<ul>
+					 
 						<li><a href="/">Home</a></li>
 					
 						<li><a href="/archives">Archives</a></li>
 					
-					<li>
+						<li><a href="/about">About</a></li>
 					
+					<li>
+ 					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
 						<input type="hidden" name="q" value="site:kwanhur.com">
 					</form>
 					
@@ -67,10 +74,10 @@
 				</ul>
 			</nav>			
 </div>
-
     </header>
     <div id="container">
       <div id="main" class="post" itemscope itemprop="blogPost">
+  
 	<article itemprop="articleBody"> 
 		<header class="article-info clearfix">
   <h1 itemprop="name">
@@ -78,45 +85,53 @@
       <a href="/2018/04/09/build-imagemagick-libwebp-with-jpeg-turbo-from-source/" title="build-imagemagick-libwebp-with-jpeg-turbo-from-source" itemprop="url">build-imagemagick-libwebp-with-jpeg-turbo-from-source</a>
   </h1>
   <p class="article-author">By
-    
-      <a href="https://kwanhur.com" title="kwanhur">kwanhur</a>
-    </p>
+       
+		<a href="/about" title="kwanhur" target="_blank" itemprop="author">kwanhur</a>
+		
   <p class="article-time">
-    <time datetime="2018-04-09T05:46:26.000Z" itemprop="datePublished">2018-04-09</time>
-    更新日期:<time datetime="2018-04-09T06:54:28.932Z" itemprop="dateModified">2018-04-09</time>
+    <time datetime="2018-04-09T05:46:26.000Z" itemprop="datePublished"> 发表于 2018-04-09</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
-		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
+		
+			
 		
 		</div>
 		
 		<p>对于喜欢折腾的人，安装所需系统库都是手工源码编译出来使用，这或许有种可控的感觉。</p>
 <p>相比直接使用软件库已编译好的，源码编译可更加自由选择或指定版本。</p>
 <p>近期在CentOS-7.2系统上，升级webp图片依赖系统库时，整理了个一键编译ImageMagick脚本，如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br></pre></td><td class="code"><pre><span class="line">$ head  -n 1 /etc/redhat-release </span><br><span class="line"></span><br><span class="line">CentOS Linux release 7.2.1511 (Core) </span><br><span class="line"></span><br><span class="line">$ uname -r</span><br><span class="line">3.10.0-327.el7.x86_64</span><br><span class="line"></span><br><span class="line">mkdir -p /<span class="built_in">export</span>/svr /<span class="built_in">export</span>/lib</span><br><span class="line">DIR=/<span class="built_in">export</span>/svr</span><br><span class="line">PREFIX=/<span class="built_in">export</span>/lib</span><br><span class="line"></span><br><span class="line">JPEG_VER=1.5.2</span><br><span class="line">PNG_VER=1.6.34</span><br><span class="line">GIF_VER=5.1.4</span><br><span class="line">WEBP_VER=0.6.1</span><br><span class="line">IMAGICK_VER=7.0.7-26</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ ! -e <span class="variable">$PREFIX</span>/libjpeg-turbo-<span class="variable">$JPEG_VER</span>.tar.gz ];<span class="keyword">then</span></span><br><span class="line">  wget https://jaist.dl.sourceforge.net/project/libjpeg-turbo/<span class="variable">$JPEG_VER</span>/libjpeg-turbo-<span class="variable">$JPEG_VER</span>.tar.gz -O <span class="variable">$PREFIX</span>/libjpeg-turbo-<span class="variable">$JPEG_VER</span>.tar.gz</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ ! -e <span class="variable">$PREFIX</span>/libpng-<span class="variable">$PNG_VER</span>.tar.gz ];<span class="keyword">then</span></span><br><span class="line">  wget https://jaist.dl.sourceforge.net/project/libpng/libpng16/<span class="variable">$PNG_VER</span>/libpng-<span class="variable">$PNG_VER</span>.tar.gz -O <span class="variable">$PREFIX</span>/libpng-<span class="variable">$PNG_VER</span>.tar.gz</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ ! -e <span class="variable">$PREFIX</span>/giflib-<span class="variable">$GIF_VER</span>.tar.bz2 ];<span class="keyword">then</span></span><br><span class="line">  wget https://jaist.dl.sourceforge.net/project/giflib/giflib-<span class="variable">$GIF_VER</span>.tar.bz2 -O <span class="variable">$PREFIX</span>/giflib-<span class="variable">$GIF_VER</span>.tar.bz2</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ ! -e <span class="variable">$PREFIX</span>/libwebp-<span class="variable">$WEBP_VER</span>.tar.gz ];<span class="keyword">then</span></span><br><span class="line">  wget https://codeload.github.com/webmproject/libwebp/tar.gz/v<span class="variable">$WEBP_VER</span> -O <span class="variable">$PREFIX</span>/libwebp-<span class="variable">$WEBP_VER</span>.tar.gz</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ ! -e <span class="variable">$PREFIX</span>/ImageMagick-<span class="variable">$IMAGICK_VER</span>.tar.gz ];<span class="keyword">then</span></span><br><span class="line">  wget https://codeload.github.com/ImageMagick/ImageMagick/tar.gz/<span class="variable">$IMAGICK_VER</span> -O <span class="variable">$PREFIX</span>/ImageMagick-<span class="variable">$IMAGICK_VER</span>.tar.gz</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> <span class="variable">$PREFIX</span></span><br><span class="line">rm -fr libjpeg-turbo-<span class="variable">$JPEG_VER</span> libpng-<span class="variable">$PNG_VER</span> giflib-<span class="variable">$GIF_VER</span> libwebp-<span class="variable">$WEBP_VER</span> ImageMagick-<span class="variable">$IMAGICK_VER</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#base package</span></span><br><span class="line">yum install -y -q libtool libtool-ltdl libtool-ltdl-devel gcc make autoconf automake readline-devel nasm</span><br><span class="line"></span><br><span class="line"><span class="comment">#libjpeg-turbo</span></span><br><span class="line">unlink <span class="variable">$PREFIX</span>/libjpeg-turbo</span><br><span class="line">rm -rf <span class="variable">$PREFIX</span>/libjpeg-turbo-<span class="variable">$JPEG_VER</span></span><br><span class="line"><span class="built_in">cd</span> <span class="variable">$&#123;DIR&#125;</span>/libjpeg-turbo-<span class="variable">$JPEG_VER</span></span><br><span class="line">make clean &gt;/dev/null</span><br><span class="line">./configure --prefix=<span class="variable">$PREFIX</span>/libjpeg-turbo-<span class="variable">$JPEG_VER</span> &amp;&amp; make -j24 &amp;&amp; make -j24 install</span><br><span class="line">ln -sfnv <span class="variable">$PREFIX</span>/libjpeg-turbo-<span class="variable">$JPEG_VER</span> <span class="variable">$PREFIX</span>/libjpeg-turbo</span><br><span class="line"></span><br><span class="line"><span class="built_in">test</span> $? -eq 0 &amp;&amp; <span class="built_in">echo</span> <span class="string">"install_status libjpeg-turbo OK"</span>||<span class="built_in">echo</span> <span class="string">"install_status libjpeg-turbo failed"</span></span><br><span class="line">sudo cp -a <span class="variable">$PREFIX</span>/libjpeg-turbo/lib/pkgconfig/*.pc /usr/lib64/pkgconfig/</span><br><span class="line">sudo <span class="built_in">echo</span> <span class="string">"<span class="variable">$PREFIX</span>/libjpeg-turbo/lib"</span> &gt; /etc/ld.so.conf.d/jpeg-turbo.conf</span><br><span class="line"></span><br><span class="line"><span class="comment">#libpng</span></span><br><span class="line">unlink <span class="variable">$PREFIX</span>/libpng</span><br><span class="line">rm -rf <span class="variable">$PREFIX</span>/libpng-<span class="variable">$PNG_VER</span></span><br><span class="line"><span class="built_in">cd</span> <span class="variable">$&#123;DIR&#125;</span>/libpng-<span class="variable">$PNG_VER</span></span><br><span class="line">make clean &gt;/dev/null</span><br><span class="line">./configure --prefix=<span class="variable">$PREFIX</span>/libpng-<span class="variable">$PNG_VER</span> &amp;&amp; make -j24 &amp;&amp; make -j24 install</span><br><span class="line">ln -sfnv <span class="variable">$PREFIX</span>/libpng-<span class="variable">$PNG_VER</span> <span class="variable">$PREFIX</span>/libpng</span><br><span class="line"></span><br><span class="line"><span class="built_in">test</span> $? -eq 0 &amp;&amp; <span class="built_in">echo</span> <span class="string">"install_status libpng OK"</span>||<span class="built_in">echo</span> <span class="string">"install_status libpng failed"</span></span><br><span class="line">sudo cp -a <span class="variable">$PREFIX</span>/libpng/lib/pkgconfig/*.pc /usr/lib64/pkgconfig/</span><br><span class="line">sudo <span class="built_in">echo</span> <span class="string">"<span class="variable">$PREFIX</span>/libpng/lib"</span> &gt; /etc/ld.so.conf.d/libpng.conf</span><br><span class="line"></span><br><span class="line"><span class="comment">#giflib</span></span><br><span class="line">unlink <span class="variable">$PREFIX</span>/giflib</span><br><span class="line">rm -fr <span class="variable">$PREFIX</span>/giflib-<span class="variable">$GIF_VER</span></span><br><span class="line"><span class="built_in">cd</span> <span class="variable">$&#123;DIR&#125;</span>/giflib-<span class="variable">$GIF_VER</span></span><br><span class="line">make clean &gt;/dev/null</span><br><span class="line">./configure --prefix=<span class="variable">$PREFIX</span>/giflib-<span class="variable">$GIF_VER</span> &amp;&amp; make -j24 &amp;&amp; make install</span><br><span class="line">ln -sfnv <span class="variable">$PREFIX</span>/giflib-<span class="variable">$GIF_VER</span> <span class="variable">$PREFIX</span>/giflib </span><br><span class="line"></span><br><span class="line"><span class="built_in">test</span> $? -eq 0 &amp;&amp; <span class="built_in">echo</span> <span class="string">"install_status giflib OK"</span> || <span class="built_in">echo</span> <span class="string">"install_status giflib failed"</span></span><br><span class="line">sudo <span class="built_in">echo</span> <span class="string">"<span class="variable">$PREFIX</span>/giflib/lib"</span> &gt; /etc/ld.so.conf.d/giflib.conf</span><br><span class="line"></span><br><span class="line"><span class="comment">#libwebp</span></span><br><span class="line"><span class="built_in">cd</span> <span class="variable">$&#123;DIR&#125;</span>/libwebp-<span class="variable">$WEBP_VER</span></span><br><span class="line">make clean &gt;/dev/null</span><br><span class="line">unlink <span class="variable">$PREFIX</span>/libwebp</span><br><span class="line">rm -rf <span class="variable">$PREFIX</span>/libwebp-<span class="variable">$WEBP_VER</span></span><br><span class="line">./configure --prefix=<span class="variable">$PREFIX</span>/libwebp-<span class="variable">$WEBP_VER</span> --<span class="built_in">enable</span>-everything --<span class="built_in">disable</span>-tiff --<span class="built_in">disable</span>-wic \</span><br><span class="line">--with-gifincludedir=<span class="variable">$PREFIX</span>/giflib/include --with-giflibdir=<span class="variable">$PREFIX</span>/giflib/lib \</span><br><span class="line">--with-jpegincludedir=<span class="variable">$PREFIX</span>/libjpeg-turbo/include --with-jpeglibdir=<span class="variable">$PREFIX</span>/libjpeg-turbo/lib \</span><br><span class="line">--with-pngincludedir=<span class="variable">$PREFIX</span>/libpng/include --with-pnglibdir=<span class="variable">$PREFIX</span>/libpng/lib &amp;&amp; make -j24 &amp;&amp; make install</span><br><span class="line">ln -sfnv <span class="variable">$PREFIX</span>/libwebp-<span class="variable">$WEBP_VER</span> <span class="variable">$PREFIX</span>/libwebp</span><br><span class="line"></span><br><span class="line"><span class="built_in">test</span> $? -eq 0 &amp;&amp; <span class="built_in">echo</span> <span class="string">"install_status libwebp OK"</span>||<span class="built_in">echo</span> <span class="string">"install_status libwebp failed"</span></span><br><span class="line">sudo cp -a <span class="variable">$PREFIX</span>/libwebp/lib/pkgconfig/*.pc /usr/lib64/pkgconfig/</span><br><span class="line">sudo <span class="built_in">echo</span> <span class="string">"<span class="variable">$PREFIX</span>/libwebp/lib"</span> &gt; /etc/ld.so.conf.d/libwebp.conf</span><br><span class="line"></span><br><span class="line"><span class="comment">#webp support yes</span></span><br><span class="line"><span class="built_in">cd</span> <span class="variable">$&#123;DIR&#125;</span>/ImageMagick-<span class="variable">$IMAGICK_VER</span></span><br><span class="line">unlink <span class="variable">$PREFIX</span>/imagemagick</span><br><span class="line">rm -rf <span class="variable">$PREFIX</span>/imagemagick-<span class="variable">$IMAGICK_VER</span></span><br><span class="line">make clean &gt;/dev/null </span><br><span class="line"><span class="built_in">export</span> PKG_CONFIG=/usr/bin/pkg-config</span><br><span class="line"><span class="built_in">export</span> CPPFLAGS=<span class="string">"-I<span class="variable">$PREFIX</span>/libjpeg-turbo/include"</span></span><br><span class="line"><span class="built_in">export</span> LDFLAGS=<span class="string">"-L<span class="variable">$PREFIX</span>/libjpeg-turbo/lib"</span></span><br><span class="line">./configure --prefix=<span class="variable">$PREFIX</span>/imagemagick-<span class="variable">$IMAGICK_VER</span> --<span class="built_in">enable</span>-static --<span class="built_in">enable</span>-shared  --<span class="built_in">disable</span>-docs  \</span><br><span class="line">--with-modules --with-webp=yes --<span class="built_in">disable</span>-openmp --<span class="built_in">enable</span>-delegate-build &amp;&amp; make -j 24 &amp;&amp; make install</span><br><span class="line">ln -sfnv <span class="variable">$PREFIX</span>/imagemagick-<span class="variable">$IMAGICK_VER</span> <span class="variable">$PREFIX</span>/imagemagick</span><br><span class="line"></span><br><span class="line"><span class="built_in">test</span> $? -eq 0 &amp;&amp; <span class="built_in">echo</span> <span class="string">"install_status imagemagick OK"</span>||<span class="built_in">echo</span> <span class="string">"install_status imagemagick failed"</span></span><br><span class="line">sudo cp -a <span class="variable">$PREFIX</span>/imagemagick/lib/pkgconfig/*.pc /usr/lib64/pkgconfig/</span><br><span class="line">sudo <span class="built_in">echo</span> <span class="string">"<span class="variable">$PREFIX</span>/imagemagick/lib"</span> &gt; /etc/ld.so.conf.d/imagemagick.conf</span><br><span class="line"></span><br><span class="line"><span class="comment">#pacakge imagemagick with dependent libraries</span></span><br><span class="line">VERSION=7.0.7-26</span><br><span class="line">LIB_PKG=/usr/lib64/pkgconfig</span><br><span class="line">LD_CONF=/etc/ld.so.conf.d</span><br><span class="line"></span><br><span class="line">tar -jPcf imagemagick-<span class="variable">$VERSION</span>.tar.bz2 <span class="variable">$PREFIX</span>/imagemagick <span class="variable">$PREFIX</span>/imagemagick-7.0.7-26 <span class="variable">$PREFIX</span>/giflib \</span><br><span class="line"><span class="variable">$PREFIX</span>/giflib-<span class="variable">$GIF_VER</span> <span class="variable">$PREFIX</span>/libpng <span class="variable">$PREFIX</span>/libpng-<span class="variable">$PNG_VER</span> <span class="variable">$PREFIX</span>/libwebp <span class="variable">$PREFIX</span>/libwebp-<span class="variable">$WEBP_VER</span> \</span><br><span class="line"><span class="variable">$PREFIX</span>/libjpeg-turbo <span class="variable">$PREFIX</span>/libjpeg-turbo-<span class="variable">$JPEG_VER</span> \</span><br><span class="line"><span class="variable">$LIB_PKG</span>/ImageMagick-7.Q16HDRI.pc <span class="variable">$LIB_PKG</span>/ImageMagick.pc <span class="variable">$LIB_PKG</span>/Magick++-7.Q16HDRI.pc <span class="variable">$LIB_PKG</span>/MagickCore-7.Q16HDRI.pc \</span><br><span class="line"><span class="variable">$LIB_PKG</span>/MagickCore.pc <span class="variable">$LIB_PKG</span>/Magick++.pc <span class="variable">$LIB_PKG</span>/MagickWand-7.Q16HDRI.pc <span class="variable">$LIB_PKG</span>/MagickWand.pc <span class="variable">$LIB_PKG</span>/libwebpdecoder.pc \</span><br><span class="line"><span class="variable">$LIB_PKG</span>/libwebpdemux.pc <span class="variable">$LIB_PKG</span>/libwebpmux.pc <span class="variable">$LIB_PKG</span>/libwebp.pc <span class="variable">$LIB_PKG</span>/libjpeg.pc <span class="variable">$LIB_PKG</span>/libturbojpeg.pc \</span><br><span class="line"><span class="variable">$LD_CONF</span>/jpeg-turbo.conf <span class="variable">$LD_CONF</span>/libwebp.conf <span class="variable">$LD_CONF</span>/imagemagick.conf <span class="variable">$LD_CONF</span>/giflib.conf <span class="variable">$LD_CONF</span>/libpng.conf</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ head  -n 1 /etc/redhat-release </span><br><span class="line"></span><br><span class="line">CentOS Linux release 7.2.1511 (Core) </span><br><span class="line"></span><br><span class="line">$ uname -r</span><br><span class="line">3.10.0-327.el7.x86_64</span><br><span class="line"></span><br><span class="line">mkdir -p /<span class="built_in">export</span>/svr /<span class="built_in">export</span>/lib</span><br><span class="line">DIR=/<span class="built_in">export</span>/svr</span><br><span class="line">PREFIX=/<span class="built_in">export</span>/lib</span><br><span class="line"></span><br><span class="line">JPEG_VER=1.5.2</span><br><span class="line">PNG_VER=1.6.34</span><br><span class="line">GIF_VER=5.1.4</span><br><span class="line">WEBP_VER=0.6.1</span><br><span class="line">IMAGICK_VER=7.0.7-26</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ ! -e <span class="variable">$PREFIX</span>/libjpeg-turbo-<span class="variable">$JPEG_VER</span>.tar.gz ];<span class="keyword">then</span></span><br><span class="line">  wget https://jaist.dl.sourceforge.net/project/libjpeg-turbo/<span class="variable">$JPEG_VER</span>/libjpeg-turbo-<span class="variable">$JPEG_VER</span>.tar.gz -O <span class="variable">$PREFIX</span>/libjpeg-turbo-<span class="variable">$JPEG_VER</span>.tar.gz</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ ! -e <span class="variable">$PREFIX</span>/libpng-<span class="variable">$PNG_VER</span>.tar.gz ];<span class="keyword">then</span></span><br><span class="line">  wget https://jaist.dl.sourceforge.net/project/libpng/libpng16/<span class="variable">$PNG_VER</span>/libpng-<span class="variable">$PNG_VER</span>.tar.gz -O <span class="variable">$PREFIX</span>/libpng-<span class="variable">$PNG_VER</span>.tar.gz</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ ! -e <span class="variable">$PREFIX</span>/giflib-<span class="variable">$GIF_VER</span>.tar.bz2 ];<span class="keyword">then</span></span><br><span class="line">  wget https://jaist.dl.sourceforge.net/project/giflib/giflib-<span class="variable">$GIF_VER</span>.tar.bz2 -O <span class="variable">$PREFIX</span>/giflib-<span class="variable">$GIF_VER</span>.tar.bz2</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ ! -e <span class="variable">$PREFIX</span>/libwebp-<span class="variable">$WEBP_VER</span>.tar.gz ];<span class="keyword">then</span></span><br><span class="line">  wget https://codeload.github.com/webmproject/libwebp/tar.gz/v<span class="variable">$WEBP_VER</span> -O <span class="variable">$PREFIX</span>/libwebp-<span class="variable">$WEBP_VER</span>.tar.gz</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ ! -e <span class="variable">$PREFIX</span>/ImageMagick-<span class="variable">$IMAGICK_VER</span>.tar.gz ];<span class="keyword">then</span></span><br><span class="line">  wget https://codeload.github.com/ImageMagick/ImageMagick/tar.gz/<span class="variable">$IMAGICK_VER</span> -O <span class="variable">$PREFIX</span>/ImageMagick-<span class="variable">$IMAGICK_VER</span>.tar.gz</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> <span class="variable">$PREFIX</span></span><br><span class="line">rm -fr libjpeg-turbo-<span class="variable">$JPEG_VER</span> libpng-<span class="variable">$PNG_VER</span> giflib-<span class="variable">$GIF_VER</span> libwebp-<span class="variable">$WEBP_VER</span> ImageMagick-<span class="variable">$IMAGICK_VER</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#base package</span></span><br><span class="line">yum install -y -q libtool libtool-ltdl libtool-ltdl-devel gcc make autoconf automake readline-devel nasm</span><br><span class="line"></span><br><span class="line"><span class="comment">#libjpeg-turbo</span></span><br><span class="line">unlink <span class="variable">$PREFIX</span>/libjpeg-turbo</span><br><span class="line">rm -rf <span class="variable">$PREFIX</span>/libjpeg-turbo-<span class="variable">$JPEG_VER</span></span><br><span class="line"><span class="built_in">cd</span> <span class="variable">$&#123;DIR&#125;</span>/libjpeg-turbo-<span class="variable">$JPEG_VER</span></span><br><span class="line">make clean &gt;/dev/null</span><br><span class="line">./configure --prefix=<span class="variable">$PREFIX</span>/libjpeg-turbo-<span class="variable">$JPEG_VER</span> &amp;&amp; make -j24 &amp;&amp; make -j24 install</span><br><span class="line">ln -sfnv <span class="variable">$PREFIX</span>/libjpeg-turbo-<span class="variable">$JPEG_VER</span> <span class="variable">$PREFIX</span>/libjpeg-turbo</span><br><span class="line"></span><br><span class="line"><span class="built_in">test</span> $? -eq 0 &amp;&amp; <span class="built_in">echo</span> <span class="string">"install_status libjpeg-turbo OK"</span>||<span class="built_in">echo</span> <span class="string">"install_status libjpeg-turbo failed"</span></span><br><span class="line">sudo cp -a <span class="variable">$PREFIX</span>/libjpeg-turbo/lib/pkgconfig/*.pc /usr/lib64/pkgconfig/</span><br><span class="line">sudo <span class="built_in">echo</span> <span class="string">"<span class="variable">$PREFIX</span>/libjpeg-turbo/lib"</span> &gt; /etc/ld.so.conf.d/jpeg-turbo.conf</span><br><span class="line"></span><br><span class="line"><span class="comment">#libpng</span></span><br><span class="line">unlink <span class="variable">$PREFIX</span>/libpng</span><br><span class="line">rm -rf <span class="variable">$PREFIX</span>/libpng-<span class="variable">$PNG_VER</span></span><br><span class="line"><span class="built_in">cd</span> <span class="variable">$&#123;DIR&#125;</span>/libpng-<span class="variable">$PNG_VER</span></span><br><span class="line">make clean &gt;/dev/null</span><br><span class="line">./configure --prefix=<span class="variable">$PREFIX</span>/libpng-<span class="variable">$PNG_VER</span> &amp;&amp; make -j24 &amp;&amp; make -j24 install</span><br><span class="line">ln -sfnv <span class="variable">$PREFIX</span>/libpng-<span class="variable">$PNG_VER</span> <span class="variable">$PREFIX</span>/libpng</span><br><span class="line"></span><br><span class="line"><span class="built_in">test</span> $? -eq 0 &amp;&amp; <span class="built_in">echo</span> <span class="string">"install_status libpng OK"</span>||<span class="built_in">echo</span> <span class="string">"install_status libpng failed"</span></span><br><span class="line">sudo cp -a <span class="variable">$PREFIX</span>/libpng/lib/pkgconfig/*.pc /usr/lib64/pkgconfig/</span><br><span class="line">sudo <span class="built_in">echo</span> <span class="string">"<span class="variable">$PREFIX</span>/libpng/lib"</span> &gt; /etc/ld.so.conf.d/libpng.conf</span><br><span class="line"></span><br><span class="line"><span class="comment">#giflib</span></span><br><span class="line">unlink <span class="variable">$PREFIX</span>/giflib</span><br><span class="line">rm -fr <span class="variable">$PREFIX</span>/giflib-<span class="variable">$GIF_VER</span></span><br><span class="line"><span class="built_in">cd</span> <span class="variable">$&#123;DIR&#125;</span>/giflib-<span class="variable">$GIF_VER</span></span><br><span class="line">make clean &gt;/dev/null</span><br><span class="line">./configure --prefix=<span class="variable">$PREFIX</span>/giflib-<span class="variable">$GIF_VER</span> &amp;&amp; make -j24 &amp;&amp; make install</span><br><span class="line">ln -sfnv <span class="variable">$PREFIX</span>/giflib-<span class="variable">$GIF_VER</span> <span class="variable">$PREFIX</span>/giflib </span><br><span class="line"></span><br><span class="line"><span class="built_in">test</span> $? -eq 0 &amp;&amp; <span class="built_in">echo</span> <span class="string">"install_status giflib OK"</span> || <span class="built_in">echo</span> <span class="string">"install_status giflib failed"</span></span><br><span class="line">sudo <span class="built_in">echo</span> <span class="string">"<span class="variable">$PREFIX</span>/giflib/lib"</span> &gt; /etc/ld.so.conf.d/giflib.conf</span><br><span class="line"></span><br><span class="line"><span class="comment">#libwebp</span></span><br><span class="line"><span class="built_in">cd</span> <span class="variable">$&#123;DIR&#125;</span>/libwebp-<span class="variable">$WEBP_VER</span></span><br><span class="line">make clean &gt;/dev/null</span><br><span class="line">unlink <span class="variable">$PREFIX</span>/libwebp</span><br><span class="line">rm -rf <span class="variable">$PREFIX</span>/libwebp-<span class="variable">$WEBP_VER</span></span><br><span class="line">./configure --prefix=<span class="variable">$PREFIX</span>/libwebp-<span class="variable">$WEBP_VER</span> --<span class="built_in">enable</span>-everything --<span class="built_in">disable</span>-tiff --<span class="built_in">disable</span>-wic \</span><br><span class="line">--with-gifincludedir=<span class="variable">$PREFIX</span>/giflib/include --with-giflibdir=<span class="variable">$PREFIX</span>/giflib/lib \</span><br><span class="line">--with-jpegincludedir=<span class="variable">$PREFIX</span>/libjpeg-turbo/include --with-jpeglibdir=<span class="variable">$PREFIX</span>/libjpeg-turbo/lib \</span><br><span class="line">--with-pngincludedir=<span class="variable">$PREFIX</span>/libpng/include --with-pnglibdir=<span class="variable">$PREFIX</span>/libpng/lib &amp;&amp; make -j24 &amp;&amp; make install</span><br><span class="line">ln -sfnv <span class="variable">$PREFIX</span>/libwebp-<span class="variable">$WEBP_VER</span> <span class="variable">$PREFIX</span>/libwebp</span><br><span class="line"></span><br><span class="line"><span class="built_in">test</span> $? -eq 0 &amp;&amp; <span class="built_in">echo</span> <span class="string">"install_status libwebp OK"</span>||<span class="built_in">echo</span> <span class="string">"install_status libwebp failed"</span></span><br><span class="line">sudo cp -a <span class="variable">$PREFIX</span>/libwebp/lib/pkgconfig/*.pc /usr/lib64/pkgconfig/</span><br><span class="line">sudo <span class="built_in">echo</span> <span class="string">"<span class="variable">$PREFIX</span>/libwebp/lib"</span> &gt; /etc/ld.so.conf.d/libwebp.conf</span><br><span class="line"></span><br><span class="line"><span class="comment">#webp support yes</span></span><br><span class="line"><span class="built_in">cd</span> <span class="variable">$&#123;DIR&#125;</span>/ImageMagick-<span class="variable">$IMAGICK_VER</span></span><br><span class="line">unlink <span class="variable">$PREFIX</span>/imagemagick</span><br><span class="line">rm -rf <span class="variable">$PREFIX</span>/imagemagick-<span class="variable">$IMAGICK_VER</span></span><br><span class="line">make clean &gt;/dev/null </span><br><span class="line"><span class="built_in">export</span> PKG_CONFIG=/usr/bin/pkg-config</span><br><span class="line"><span class="built_in">export</span> CPPFLAGS=<span class="string">"-I<span class="variable">$PREFIX</span>/libjpeg-turbo/include"</span></span><br><span class="line"><span class="built_in">export</span> LDFLAGS=<span class="string">"-L<span class="variable">$PREFIX</span>/libjpeg-turbo/lib"</span></span><br><span class="line">./configure --prefix=<span class="variable">$PREFIX</span>/imagemagick-<span class="variable">$IMAGICK_VER</span> --<span class="built_in">enable</span>-static --<span class="built_in">enable</span>-shared  --<span class="built_in">disable</span>-docs  \</span><br><span class="line">--with-modules --with-webp=yes --<span class="built_in">disable</span>-openmp --<span class="built_in">enable</span>-delegate-build &amp;&amp; make -j 24 &amp;&amp; make install</span><br><span class="line">ln -sfnv <span class="variable">$PREFIX</span>/imagemagick-<span class="variable">$IMAGICK_VER</span> <span class="variable">$PREFIX</span>/imagemagick</span><br><span class="line"></span><br><span class="line"><span class="built_in">test</span> $? -eq 0 &amp;&amp; <span class="built_in">echo</span> <span class="string">"install_status imagemagick OK"</span>||<span class="built_in">echo</span> <span class="string">"install_status imagemagick failed"</span></span><br><span class="line">sudo cp -a <span class="variable">$PREFIX</span>/imagemagick/lib/pkgconfig/*.pc /usr/lib64/pkgconfig/</span><br><span class="line">sudo <span class="built_in">echo</span> <span class="string">"<span class="variable">$PREFIX</span>/imagemagick/lib"</span> &gt; /etc/ld.so.conf.d/imagemagick.conf</span><br><span class="line"></span><br><span class="line"><span class="comment">#pacakge imagemagick with dependent libraries</span></span><br><span class="line">VERSION=7.0.7-26</span><br><span class="line">LIB_PKG=/usr/lib64/pkgconfig</span><br><span class="line">LD_CONF=/etc/ld.so.conf.d</span><br><span class="line"></span><br><span class="line">tar -jPcf imagemagick-<span class="variable">$VERSION</span>.tar.bz2 <span class="variable">$PREFIX</span>/imagemagick <span class="variable">$PREFIX</span>/imagemagick-7.0.7-26 <span class="variable">$PREFIX</span>/giflib \</span><br><span class="line"><span class="variable">$PREFIX</span>/giflib-<span class="variable">$GIF_VER</span> <span class="variable">$PREFIX</span>/libpng <span class="variable">$PREFIX</span>/libpng-<span class="variable">$PNG_VER</span> <span class="variable">$PREFIX</span>/libwebp <span class="variable">$PREFIX</span>/libwebp-<span class="variable">$WEBP_VER</span> \</span><br><span class="line"><span class="variable">$PREFIX</span>/libjpeg-turbo <span class="variable">$PREFIX</span>/libjpeg-turbo-<span class="variable">$JPEG_VER</span> \</span><br><span class="line"><span class="variable">$LIB_PKG</span>/ImageMagick-7.Q16HDRI.pc <span class="variable">$LIB_PKG</span>/ImageMagick.pc <span class="variable">$LIB_PKG</span>/Magick++-7.Q16HDRI.pc <span class="variable">$LIB_PKG</span>/MagickCore-7.Q16HDRI.pc \</span><br><span class="line"><span class="variable">$LIB_PKG</span>/MagickCore.pc <span class="variable">$LIB_PKG</span>/Magick++.pc <span class="variable">$LIB_PKG</span>/MagickWand-7.Q16HDRI.pc <span class="variable">$LIB_PKG</span>/MagickWand.pc <span class="variable">$LIB_PKG</span>/libwebpdecoder.pc \</span><br><span class="line"><span class="variable">$LIB_PKG</span>/libwebpdemux.pc <span class="variable">$LIB_PKG</span>/libwebpmux.pc <span class="variable">$LIB_PKG</span>/libwebp.pc <span class="variable">$LIB_PKG</span>/libjpeg.pc <span class="variable">$LIB_PKG</span>/libturbojpeg.pc \</span><br><span class="line"><span class="variable">$LD_CONF</span>/jpeg-turbo.conf <span class="variable">$LD_CONF</span>/libwebp.conf <span class="variable">$LD_CONF</span>/imagemagick.conf <span class="variable">$LD_CONF</span>/giflib.conf <span class="variable">$LD_CONF</span>/libpng.conf</span><br></pre></td></tr></table></figure>
 <p>通过该系统库，完美适配 <a href="https://github.com/kwanhur/lua-resty-imagick" target="_blank" rel="noopener">lua-resty-imagick</a> :)</p>
   
+        <span id="busuanzi_container_page_pv">
+         <br/>
+         Total Read <span id="busuanzi_value_page_pv"></span> Times.
+        </span>
 	</div>
-    <span id="busuanzi_container_page_pv" style="padding:1.5em 4%;">
-       本文总阅读量<span id="busuanzi_value_page_pv"></span>次
-    </span>
 		<footer class="article-footer clearfix">
+<div class="article-catetags">
 
-
-
-
-<div class="article-share" id="share">
-
-  <div data-url="https://kwanhur.com/2018/04/09/build-imagemagick-libwebp-with-jpeg-turbo-from-source/" data-title="build-imagemagick-libwebp-with-jpeg-turbo-from-source | Kwanhur&#39;s Blog (黄老湿)" data-tsina="null" class="share clearfix">
-  </div>
 
 </div>
-</footer>   	       
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="https://kwanhur.com/2018/04/09/build-imagemagick-libwebp-with-jpeg-turbo-from-source/" data-title="build-imagemagick-libwebp-with-jpeg-turbo-from-source | Kwanhur&#39;s Blog (黄老湿)" data-tsina="406740134" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
 	</article>
 	
 <nav class="article-nav clearfix">
@@ -124,7 +139,7 @@
 
 <div class="next">
 <a href="/2018/03/23/nginx-http2-grpc/"  title="nginx-http2-grpc">
- <strong>NEXT:</strong><br/> 
+ <strong>下一篇：</strong><br/> 
  <span>nginx-http2-grpc
 </span>
 </a>
@@ -133,13 +148,18 @@
 </nav>
 
 	
+
+
+
 </div>  
 
       <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  
+ 
+ 
+ 
   </div>
 
 <div id="asidepart">
@@ -147,11 +167,29 @@
 <aside class="clearfix">
 
   
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="kwanhur" data-theme="medium"></div>
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
 
-  
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://openresty.org" target="_blank" title="Scalable Web Platform by Extending NGINX with Lua">OpenResty</a>
+            
+          </li>
+        
+    </ul>
+</div>
 
   <div class="rsspart">
-	<a href="https://kwanhur.com/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
 </div>
 
   <p class="asidetitle">打赏他</p>
@@ -172,37 +210,54 @@
     </div>
     <footer><div id="footer" >
 	
-	<div class="line">
-		<span></span>
-		<div class="author"></div>
-	</div>
 	
-	
-	<div class="social-font clearfix">
+	<section class="info">
+		<p> Hello ,I&#39;m Kwanhur.Huang in VIPS. <br/>
+			To be a better me.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
 		
-		<a href="http://weibo.com/406740134" target="_blank" title="weibo"></a>
-		
-		
-		<a href="https://twitter.com/KwanhurHuang" target="_blank" title="twitter"></a>
-		
-		
-		<a href="https://github.com/kwanhur" target="_blank" title="github"></a>
+		<a href="http://weibo.com/406730134" target="_blank" class="icon-weibo" title="微博"></a>
 		
 		
+		<a href="https://github.com/kwanhur" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		<a href="https://twitter.com/KwanhurHuang" target="_blank" class="icon-twitter" title="twitter"></a>
+		
+		
+		
+		
+		
+		<a href="http://www.zhihu.com/people/kwanhur" target="_blank" class="icon-zhihu" title="知乎"></a>
+		
+		
+		
+		<a href="mailto:huang_hua2012@163.com" target="_blank" class="icon-email" title="Email Me"></a>
 		
 	</div>
-		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2018 
+			
 		
-		<a href="https://kwanhur.com" target="_blank" title="kwanhur">kwanhur</a>
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2018 
 		
-        <span id="busuanzi_container_site_uv"> 
-        本站访客数<span id="busuanzi_value_site_uv"></span>人次
+		<a href="/about" target="_blank" title="kwanhur">kwanhur</a>
+		
+        <span id="busuanzi_container_site_uv">
+        Total people visit <span id="busuanzi_value_site_uv"></span> Times
         </span>
 		</p>
 </div>
 <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 </footer>
-    <script src="/js/jquery-2.1.0.min.js"></script>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
 <script type="text/javascript">
 $(document).ready(function(){ 
   $('.navbar').click(function(){
@@ -220,20 +275,6 @@ $(document).ready(function(){
       a = $('#asidepart'),
       c = $('.closeaside'),
       o = $('.openaside');
-  $(window).resize(function(){
-    getSize(); 
-    if (myWidth >= 1024) {
-      $('header nav').removeClass('shownav');
-    }else
-    {
-      m.removeClass('moveMain');
-      a.css('display', 'block').removeClass('fadeOut');
-      o.css('display', 'none');
-      
-      $('#toc.toc-aside').css('display', 'none');
-        
-    }
-  });
   c.click(function(){
     a.addClass('fadeOut').css('display', 'none');
     o.css('display', 'block').addClass('fadeIn');
@@ -247,6 +288,20 @@ $(document).ready(function(){
   $(window).scroll(function(){
     o.css("top",Math.max(80,260-$(this).scrollTop()));
   });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
 });
 </script>
 
@@ -255,8 +310,6 @@ $(document).ready(function(){
   var ai = $('.article-content>iframe'),
       ae = $('.article-content>embed'),
       t  = $('#toc'),
-      h  = $('article h2')
-      ah = $('article h2'),
       ta = $('#toc.toc-aside'),
       o  = $('.openaside'),
       c  = $('.closeaside');
@@ -266,19 +319,15 @@ $(document).ready(function(){
   if(ae.length>0){
    ae.wrap('<div class="video-container" />');
   };
-  if(ah.length==0){
-    t.css('display','none');
-  }else{
-    c.click(function(){
-      ta.css('display', 'block').addClass('fadeIn');
-    });
-    o.click(function(){
-      ta.css('display', 'none');
-    });
-    $(window).scroll(function(){
-      ta.css("top",Math.max(140,320-$(this).scrollTop()));
-    });
-  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
 });
 </script>
 
@@ -289,26 +338,47 @@ $(document).ready(function(){
       url = $this.attr('data-url'),
       encodedUrl = encodeURIComponent(url),
       title = $this.attr('data-title'),
-      tsina = $this.attr('data-tsina');
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
   var html = [
-  '<a href="#" class="overlay" id="qrcode"></a>',
-  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
-  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
   '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
-  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
   '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
-  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
   '<span title="Share to"></span>'
   ].join('');
   $this.append(html);
-  $('.article-share-qrcode').click(function(){
-    var imgSrc = $('#qrcode-pic').attr('data-src');
-    $('#qrcode-pic').attr('src', imgSrc);
-    $('#qrcode-pic').load(function(){
-        $('.qrcode strong').text(' ');
-    });
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
   });
-});     
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
 </script>
 
 
@@ -316,6 +386,70 @@ $(document).ready(function(){
 
 
 
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
   </body>
 </html>
-
