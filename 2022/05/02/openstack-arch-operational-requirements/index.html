@@ -20,25 +20,29 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"kwanhur.com","root":"/kwanhur.github.io/","images":"/kwanhur.github.io/images","scheme":"Muse","darkmode":false,"version":"8.11.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/kwanhur.github.io/js/config.js"></script>
 
-    <meta name="description" content="To be a better me">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Kwanhur&#39;s Blog">
-<meta property="og:url" content="https://kwanhur.com/index.html">
+    <meta name="description" content="本篇博文翻译自 OpenStack 官网 ^1  以下内容描述运维因素如何影响 OpenStack 云平台设计。 网络设计​    对于集群式 OpenStack 的网络设计需考虑集群内互联需求、客户访问他们的云上资源需求、运维管理集群访问需求。并且还需要考虑这些网络的带宽、延迟以及可靠性。 ​    额外还需考虑监控、告警。如果你在采用外部供应商的，需要在你的对照列表定义 SLA，包">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OpenStack 系列（架构篇 2）- 运维需求">
+<meta property="og:url" content="https://kwanhur.com/2022/05/02/openstack-arch-operational-requirements/index.html">
 <meta property="og:site_name" content="Kwanhur&#39;s Blog">
-<meta property="og:description" content="To be a better me">
+<meta property="og:description" content="本篇博文翻译自 OpenStack 官网 ^1  以下内容描述运维因素如何影响 OpenStack 云平台设计。 网络设计​    对于集群式 OpenStack 的网络设计需考虑集群内互联需求、客户访问他们的云上资源需求、运维管理集群访问需求。并且还需要考虑这些网络的带宽、延迟以及可靠性。 ​    额外还需考虑监控、告警。如果你在采用外部供应商的，需要在你的对照列表定义 SLA，包">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-05-02T13:41:24.000Z">
+<meta property="article:modified_time" content="2022-05-02T13:41:24.577Z">
 <meta property="article:author" content="kwanhur">
+<meta property="article:tag" content="openstack">
+<meta property="article:tag" content="arch">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://kwanhur.com/">
+<link rel="canonical" href="https://kwanhur.com/2022/05/02/openstack-arch-operational-requirements/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://kwanhur.com/2022/05/02/openstack-arch-operational-requirements/","path":"2022/05/02/openstack-arch-operational-requirements/","title":"OpenStack 系列（架构篇 2）- 运维需求"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Kwanhur's Blog</title>
+<title>OpenStack 系列（架构篇 2）- 运维需求 | Kwanhur's Blog</title>
   
 
 
@@ -68,7 +72,7 @@
 
     <a href="/kwanhur.github.io/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">Kwanhur's Blog</h1>
+      <p class="site-title">Kwanhur's Blog</p>
       <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description">Focus on NFV SDN and DevOps</p>
@@ -101,7 +105,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -114,6 +118,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1"><span class="nav-number">1.</span> <span class="nav-text">网络设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SLA-%E8%80%83%E8%99%91"><span class="nav-number">2.</span> <span class="nav-text">SLA 考虑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%94%AF%E6%8C%81%E5%92%8C%E7%BB%B4%E6%8A%A4"><span class="nav-number">3.</span> <span class="nav-text">支持和维护</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%B4%E6%8A%A4%E5%B7%A5%E4%BD%9C%E8%A1%A8"><span class="nav-number">3.1.</span> <span class="nav-text">维护工作表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%AF%E9%9D%A0%E6%80%A7%E5%92%8C%E5%8F%AF%E7%94%A8%E6%80%A7"><span class="nav-number">3.2.</span> <span class="nav-text">可靠性和可用性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%A5%E5%BF%97%E5%92%8C%E7%9B%91%E6%8E%A7"><span class="nav-number">4.</span> <span class="nav-text">日志和监控</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%A1%E7%90%86%E8%BD%AF%E4%BB%B6"><span class="nav-number">5.</span> <span class="nav-text">管理软件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">6.</span> <span class="nav-text">数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%90%E7%BB%B4%E4%BA%BA%E5%91%98%E8%AE%BF%E9%97%AE%E7%B3%BB%E7%BB%9F"><span class="nav-number">7.</span> <span class="nav-text">运维人员访问系统</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -178,16 +183,17 @@
 </noscript>
 
 
-    <div class="main-inner index posts-expand">
+    <div class="main-inner post posts-expand">
 
-    
+
+  
 
 
 <div class="post-block">
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://kwanhur.com/2022/05/02/openstack-arch-operational-requirements/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -201,13 +207,13 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Kwanhur's Blog">
+      <meta itemprop="name" content="OpenStack 系列（架构篇 2）- 运维需求 | Kwanhur's Blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/kwanhur.github.io/2022/05/02/openstack-arch-operational-requirements/" class="post-title-link" itemprop="url">OpenStack 系列（架构篇 2）- 运维需求</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          OpenStack 系列（架构篇 2）- 运维需求
+        </h1>
 
         <div class="post-meta-container">
           <div class="post-meta">
@@ -230,7 +236,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <!--
+        <!--
   ~ Copyright 2022 kwanhur
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -339,7 +345,6 @@
 <p>​    对于一个集成性的系统，需确保网络结构能打通所有的云平台。同样，需认真考虑到这些系统实际性能和可靠度，以及更低的响应延迟。</p>
 <p>​    云平台持续演进，包括外部所纳管的系统，即使提前做好准备，也不太可用做到没有变更。另外，各大云供应商提供的基础设施和暴露的都会不一样。这会导致各故障提供的根因分析报告都会有所不同。</p>
 
-      
     </div>
 
     
@@ -347,416 +352,39 @@
     
 
     <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>kwanhur
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://kwanhur.com/2022/05/02/openstack-arch-operational-requirements/" title="OpenStack 系列（架构篇 2）- 运维需求">https://kwanhur.com/2022/05/02/openstack-arch-operational-requirements/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
 </div>
 
+          <div class="post-tags">
+              <a href="/kwanhur.github.io/tags/openstack/" rel="tag"># openstack</a>
+              <a href="/kwanhur.github.io/tags/arch/" rel="tag"># arch</a>
+          </div>
 
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://kwanhur.com/2022/04/15/openstack-arch-enterprise-requirements/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/1792134?v=4&s=400#/images/avatar.gif">
-      <meta itemprop="name" content="kwanhur">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kwanhur's Blog">
-      <meta itemprop="description" content="To be a better me">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Kwanhur's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/kwanhur.github.io/2022/04/15/openstack-arch-enterprise-requirements/" class="post-title-link" itemprop="url">OpenStack 系列（架构篇 1）- 企业需求</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-04-15 21:04:39" itemprop="dateCreated datePublished" datetime="2022-04-15T21:04:39+08:00">2022-04-15</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-17 20:10:05" itemprop="dateModified" datetime="2022-04-17T20:10:05+08:00">2022-04-17</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <!--
-  ~ Copyright 2022 kwanhur
-  ~
-  ~ Licensed under the Apache License, Version 2.0 (the "License");
-  ~ you may not use this file except in compliance with the License.
-  ~ You may obtain a copy of the License at
-  ~
-  ~ http://www.apache.org/licenses/LICENSE-2.0
-  ~
-  ~ Unless required by applicable law or agreed to in writing, software
-  ~ distributed under the License is distributed on an "AS IS" BASIS,
-  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  ~ See the License for the specific language governing permissions and
-  ~ limitations under the License.
-  ~
--->
-
-<blockquote>
-<p>前言：个人看法，学习一门技术，先从整体架构视角去了解，让自己有个总体概念。带着问题去查阅官方文档，技术路线会更加清晰，比如它为什么会出现（背景）、帮助谁解决什么样的问题（场景）、如何解决的（方式）、设计思路是什么（架构）。</p>
-<p>本篇文章内容翻译自 OpenStack 官网 <a target="_blank" rel="noopener" href="https://docs.openstack.org/arch-design/arch-requirements/arch-requirements-enterprise.html">^1</a>。</p>
-</blockquote>
-<p>总的看，从 13 个方面来考虑影响基于 OpenStack 构建的云设施。分别是：</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/kwanhur.github.io/2022/04/15/openstack-arch-enterprise-requirements/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
-    </div>
 
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://kwanhur.com/2022/04/10/pick-up-blog/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/1792134?v=4&s=400#/images/avatar.gif">
-      <meta itemprop="name" content="kwanhur">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kwanhur's Blog">
-      <meta itemprop="description" content="To be a better me">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Kwanhur's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/kwanhur.github.io/2022/04/10/pick-up-blog/" class="post-title-link" itemprop="url">pick-up-blog</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-04-10 17:27:49" itemprop="dateCreated datePublished" datetime="2022-04-10T17:27:49+08:00">2022-04-10</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-17 19:47:55" itemprop="dateModified" datetime="2022-04-17T19:47:55+08:00">2022-04-17</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <!--
-  ~ Copyright 2022 kwanhur
-  ~
-  ~ Licensed under the Apache License, Version 2.0 (the "License");
-  ~ you may not use this file except in compliance with the License.
-  ~ You may obtain a copy of the License at
-  ~
-  ~ http://www.apache.org/licenses/LICENSE-2.0
-  ~
-  ~ Unless required by applicable law or agreed to in writing, software
-  ~ distributed under the License is distributed on an "AS IS" BASIS,
-  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  ~ See the License for the specific language governing permissions and
-  ~ limitations under the License.
-  ~
--->
-
-<p>该博客被遗弃很久了，近期看到 <code>NexT</code> 主题比较合心意，决定折腾下，更换了主题，看到的效果还不错。</p>
-<p>另一原因是，之前写的分享内容全部在公司内部<code>wiki</code>系统，离开后也就留下了；所以决定后续关于技术研究、想法点子等采用<code>Github Pages</code>形式分享。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/kwanhur.github.io/2022/04/10/pick-up-blog/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/kwanhur.github.io/2022/04/15/openstack-arch-enterprise-requirements/" rel="prev" title="OpenStack 系列（架构篇 1）- 企业需求">
+                  <i class="fa fa-chevron-left"></i> OpenStack 系列（架构篇 1）- 企业需求
+                </a>
             </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://kwanhur.com/2018/04/09/build-imagemagick-libwebp-with-jpeg-turbo-from-source/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/1792134?v=4&s=400#/images/avatar.gif">
-      <meta itemprop="name" content="kwanhur">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kwanhur's Blog">
-      <meta itemprop="description" content="To be a better me">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Kwanhur's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/kwanhur.github.io/2018/04/09/build-imagemagick-libwebp-with-jpeg-turbo-from-source/" class="post-title-link" itemprop="url">build-imagemagick-libwebp-with-jpeg-turbo-from-source</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2018-04-09 13:46:26" itemprop="dateCreated datePublished" datetime="2018-04-09T13:46:26+08:00">2018-04-09</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-17 20:10:04" itemprop="dateModified" datetime="2022-04-17T20:10:04+08:00">2022-04-17</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <!--
-  ~ Copyright 2022 kwanhur
-  ~
-  ~ Licensed under the Apache License, Version 2.0 (the "License");
-  ~ you may not use this file except in compliance with the License.
-  ~ You may obtain a copy of the License at
-  ~
-  ~ http://www.apache.org/licenses/LICENSE-2.0
-  ~
-  ~ Unless required by applicable law or agreed to in writing, software
-  ~ distributed under the License is distributed on an "AS IS" BASIS,
-  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  ~ See the License for the specific language governing permissions and
-  ~ limitations under the License.
-  ~
--->
-
-<p>对于喜欢折腾的人，安装所需系统库都是手工源码编译出来使用，这或许有种可控的感觉。</p>
-<p>相比直接使用软件库已编译好的，源码编译可更加自由选择或指定版本。</p>
-<p>近期在 CentOS-7.2 系统上，升级 webp 图片依赖系统库时，整理了个一键编译 ImageMagick 脚本，如下：</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/kwanhur.github.io/2018/04/09/build-imagemagick-libwebp-with-jpeg-turbo-from-source/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
+            <div class="post-nav-item">
             </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://kwanhur.com/2018/03/23/nginx-http2-grpc/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/1792134?v=4&s=400#/images/avatar.gif">
-      <meta itemprop="name" content="kwanhur">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kwanhur's Blog">
-      <meta itemprop="description" content="To be a better me">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Kwanhur's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/kwanhur.github.io/2018/03/23/nginx-http2-grpc/" class="post-title-link" itemprop="url">nginx-http2-grpc</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2018-03-23 16:43:36" itemprop="dateCreated datePublished" datetime="2018-03-23T16:43:36+08:00">2018-03-23</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-17 19:51:51" itemprop="dateModified" datetime="2022-04-17T19:51:51+08:00">2022-04-17</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <!--
-  ~ Copyright 2022 kwanhur
-  ~
-  ~ Licensed under the Apache License, Version 2.0 (the "License");
-  ~ you may not use this file except in compliance with the License.
-  ~ You may obtain a copy of the License at
-  ~
-  ~ http://www.apache.org/licenses/LICENSE-2.0
-  ~
-  ~ Unless required by applicable law or agreed to in writing, software
-  ~ distributed under the License is distributed on an "AS IS" BASIS,
-  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  ~ See the License for the specific language governing permissions and
-  ~ limitations under the License.
-  ~
--->
-
-<p>NGINX 官方已发布<a target="_blank" rel="noopener" href="http://nginx.org/en/CHANGES">1.13.10</a>版本，其最主要更新功能点莫过于支持 gRPC 服务代理，即新增的模块<a target="_blank" rel="noopener" href="http://nginx.org/en/docs/http/ngx_http_grpc_module.html">ngx_http_grpc_module</a>。</p>
-<p>这意味着可以很容易复用 Nginx 现有基础设施，简单几步即可构建出高可用的 gRPC 服务端集群，具体构建概要如下：</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/kwanhur.github.io/2018/03/23/nginx-http2-grpc/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
+          </div>
     </footer>
   </article>
 </div>
@@ -765,6 +393,28 @@
 
 
 
+
+    
+  
+  <div class="comments">
+    <script src="https://giscus.app/client.js"
+        data-repo="kwanhur/kwanhur.github.io" 
+        data-repo-id="MDEwOlJlcG9zaXRvcnk3Nzk4Mjk3OQ==" 
+        data-category="General"
+        data-category-id="DIC_kwDOBKXtA84COmwf"
+        data-mapping="title" 
+        data-reactions-enabled="1" 
+        data-emit-metadata="1" 
+        data-theme="light"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        data-input-position="bottom"
+        data-loading="lazy"
+        async>
+    </script>
+  </div>
+  
+  
 </div>
   </main>
 
