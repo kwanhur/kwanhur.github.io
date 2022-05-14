@@ -28,7 +28,7 @@
 <meta property="og:description" content="本篇文章内容翻译自 OpenStack 官网 [^1]。  以下将从五个方面剖析高可用的需求。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-05-14T07:10:28.000Z">
-<meta property="article:modified_time" content="2022-05-14T07:10:28.636Z">
+<meta property="article:modified_time" content="2022-05-14T07:13:03.658Z">
 <meta property="article:author" content="kwanhur">
 <meta property="article:tag" content="openstack">
 <meta property="article:tag" content="arch">
@@ -223,8 +223,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2022-05-14 15:10:28" itemprop="dateCreated datePublished" datetime="2022-05-14T15:10:28+08:00">2022-05-14</time>
+      <time title="创建时间：2022-05-14 15:10:28 / 修改时间：15:13:03" itemprop="dateCreated datePublished" datetime="2022-05-14T15:10:28+08:00">2022-05-14</time>
     </span>
 
   
@@ -254,7 +255,6 @@
   ~
 -->
 
-
 <!--
   ~ Copyright 2022 kwanhur
   ~
@@ -279,10 +279,10 @@
 <span id="more"></span>
 
 <h2 id="数据平面和控制平面"><a href="#数据平面和控制平面" class="headerlink" title="数据平面和控制平面"></a>数据平面和控制平面</h2><p>在设计一个 OpenStack 云平台时，认真考虑 SLA 潜在需求是非常重要的。包括核心服务需要维护好各种资源实例的高可用，涵盖计算、网络、存储以及额外运行在这些资源之上的实例。这些服务里通常可认为是数据平面的服务，并且是一直在线可用的。</p>
-<p>其他服务，比如 CRUD （创建、读取、更新、删除）操作、度量、监控等，通常当做控制平面。SLA 更可能说明这些服务较低的持续运行时长。</p>
+<p>其他服务，比如 CRUD（创建、读取、更新、删除）操作、度量、监控等，通常当做控制平面。SLA 更可能说明这些服务较低的持续运行时长。</p>
 <p>组成 OpenStack 云平台的服务列表会有大量的需求，你需要考虑如何满足 SLA 每一条条款。例如，为了能提供计算服务，最少量的存储、消息队列和数据库服务，以及它们之间的网络服务需同步支持。</p>
 <p>如果数据平面和控制平面是逻辑和物理隔离的，持续维护将会更加简单。例如，重启一个控制器就有可能不会影响到客户。如果一个服务失败影响到整个服务器的操作，控制平面和数据平面的隔离要能快速维护并且控制少影响到客户的操作。</p>
-<h2 id="消除单点故障"><a href="#消除单点故障" class="headerlink" title="消除单点故障"></a>消除单点故障</h2><p>OpenStack 部署高可用方式至少需要2个可用节点。可以运行所有依赖的服务，包括消息队列服务（如 RabbitMQ 或 QPID）和数据库服务（如 MySQL 或 MariaDB）。正如云上服务都是可扩展的，后端服务同样需能扩展。监控和报告服务器可用率和响应耗时，以及系统负载，能帮助做决策扩展。</p>
+<h2 id="消除单点故障"><a href="#消除单点故障" class="headerlink" title="消除单点故障"></a>消除单点故障</h2><p>OpenStack 部署高可用方式至少需要 2 个可用节点。可以运行所有依赖的服务，包括消息队列服务（如 RabbitMQ 或 QPID）和数据库服务（如 MySQL 或 MariaDB）。正如云上服务都是可扩展的，后端服务同样需能扩展。监控和报告服务器可用率和响应耗时，以及系统负载，能帮助做决策扩展。</p>
 <p>OpenStack 服务应该部署在多服务器上，以规避单点故障。为确保可用性，OpenStack 服务在负载均衡器后提供多节点实例。</p>
 <p>同样有一小部分 OpenStack 服务只能运行在一处地方（比如 ceilometer-agent-central 服务）。为了防止服务单点故障，可以通过集群软件（如 Pacemaker）管理。</p>
 <p>在 OpenStack 里，提供服务的基础设施应该通常可用，尤其承诺了 SLA。设计网络架构时，要确保网络可用性，以确保不存在故障单点。考虑到大规模交换、路由和冗余电力在这核心基础设施，同样关联性组合网络来提供多样性路由来保障高可用的交换设施。</p>
