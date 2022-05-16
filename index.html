@@ -128,13 +128,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/kwanhur.github.io/archives/">
-          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-count">7</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/kwanhur.github.io/tags/">
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -188,7 +188,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://kwanhur.com/2022/05/14/openstack-arch-high-availability/">
+    <link itemprop="mainEntityOfPage" href="https://kwanhur.com/2022/05/16/openstack-networking-concepts/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://avatars.githubusercontent.com/u/1792134?v=4&s=400#/images/avatar.gif">
@@ -206,7 +206,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/kwanhur.github.io/2022/05/14/openstack-arch-high-availability/" class="post-title-link" itemprop="url">OpenStack 系列（架构篇 3）- 高可用</a>
+          <a href="/kwanhur.github.io/2022/05/16/openstack-networking-concepts/" class="post-title-link" itemprop="url">OpenStack 系列（网络）简单概念</a>
         </h2>
 
         <div class="post-meta-container">
@@ -218,7 +218,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2022-05-14 15:10:28 / 修改时间：15:13:03" itemprop="dateCreated datePublished" datetime="2022-05-14T15:10:28+08:00">2022-05-14</time>
+      <time title="创建时间：2022-05-16 19:58:59 / 修改时间：20:03:04" itemprop="dateCreated datePublished" datetime="2022-05-16T19:58:59+08:00">2022-05-16</time>
     </span>
 
   
@@ -248,7 +248,94 @@
   ~
 -->
 
-<!--
+
+<blockquote>
+<p>本篇博文翻译自 OpenStack 官网 <a target="_blank" rel="noopener" href="https://docs.openstack.org/neutron/latest/install/concepts.html">^1</a></p>
+</blockquote>
+<p>讲解 OpenStack 网络基本概念</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/kwanhur.github.io/2022/05/16/openstack-networking-concepts/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://kwanhur.com/2022/05/14/openstack-arch-high-availability/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/1792134?v=4&s=400#/images/avatar.gif">
+      <meta itemprop="name" content="kwanhur">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kwanhur's Blog">
+      <meta itemprop="description" content="To be a better me">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Kwanhur's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/kwanhur.github.io/2022/05/14/openstack-arch-high-availability/" class="post-title-link" itemprop="url">OpenStack 系列（架构篇 3）- 高可用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-05-14 15:10:28" itemprop="dateCreated datePublished" datetime="2022-05-14T15:10:28+08:00">2022-05-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-05-15 17:22:28" itemprop="dateModified" datetime="2022-05-15T17:22:28+08:00">2022-05-15</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <!--
   ~ Copyright 2022 kwanhur
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
